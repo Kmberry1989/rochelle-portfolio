@@ -1,168 +1,27 @@
 /* Global resets */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body, html {
-  width: 100%;
-  height: 100%;
-  font-family: 'Open Sans', sans-serif;
-  color: #333;
-}
-/* Desk background */
-.desk-bg {
-  background: url('desk-background.jpg') no-repeat center center/cover;
-  position: relative;
-  min-height: 100vh;
-  padding-top: 100px; /* space for tabs */
-}
-/* Folder navigation */
-.folder-nav {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  background: transparent;
-  padding: 0 20px;
-}
-.folder-nav ul {
-  display: flex;
-  list-style: none;
-}
-.folder-nav .tab {
-  position: relative;
-  margin-right: 10px;
-}
-.folder-nav .tab button {
-  background: #F0E0B6; /* manila folder color */
-  border: 1px solid #008080;
-  padding: 8px 12px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.folder-nav .tab.active button,
-.folder-nav .tab button:hover {
-  background: #fff;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transform: translateY(-2px);
-}
-/* Dropdown submenu */
-.folder-nav .dropdown .submenu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #F0E0B6;
-  border: 1px solid #008080;
-  list-style: none;
-  padding: 5px 0;
-  z-index: 10;
-}
-.folder-nav .dropdown:hover .submenu {
-  display: block;
-}
-.folder-nav .submenu li button {
-  background: transparent;
-  border: none;
-  padding: 5px 15px;
-  display: block;
-  width: 100%;
-  text-align: left;
-}
-.folder-nav .submenu li button:hover {
-  background: #fff;
-}
-/* Content area */
-.content-area {
-  position: relative;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px;
-}
-.folder-page .folder-panel {
-  background: #fff;
-  border: 1px solid #ccc;
-  padding: 30px;
-  box-shadow: 0 6px 10px rgba(0,0,0,0.1);
-  border-top: 20px solid #F0E0B6; /* tab edge */
-}
-/* Typography */
-.tagline {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 28px;
-  font-weight: bold;
-  color: #008080;
-  margin-bottom: 15px;
-}
-.intro-text {
-  font-size: 16px;
-  line-height: 1.6;
-  margin-bottom: 25px;
-}
-/* Buttons */
-.btn {
-  font-family: 'Montserrat', sans-serif;
-  text-transform: uppercase;
-  padding: 10px 18px;
-  border: none;
-  cursor: pointer;
-  margin-right: 10px;
-  transition: background 0.2s;
-}
-.view-work {
-  background: #00A99D;
-  color: #fff;
-}
-.view-work:hover {
-  background: #008F86;
-}
-.get-in-touch {
-  background: #40E0D0;
-  color: #fff;
-}
-.get-in-touch:hover {
-  background: #38C3B9;
-}
-/* Printer widget */
-.printer-widget {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  align-items: center;
-}
-.printer-widget img {
-  width: 40px;
-  margin-right: 8px;
-}
-.print-btn {
-  background: #008080;
-  color: #fff;
-  padding: 8px 12px;
-  border: none;
-  font-family: 'Montserrat', sans-serif;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-.print-btn:hover {
-  transform: scale(1.05);
-}
-/* Responsive drawer for mobile */
-@media (max-width: 768px) {
-  .folder-nav ul {
-    display: none;
-  }
-  .folder-nav::before {
-    content: '\f0c9'; /* FontAwesome bars icon */
-    font-family: 'FontAwesome';
-    font-size: 24px;
-    color: #008080;
-    cursor: pointer;
-  }
-}
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:100%; height:100%; overflow:hidden; font-family:'Open Sans', sans-serif; }
+
+/* 3D Scene */
+.scene { perspective:1200px; width:100vw; height:100vh; background:#eaeaea; position:relative; }
+.monitor-prop { position:absolute; top:10%; left:10%; width:80%; height:80%; transform: rotateY(-10deg) rotateX(5deg); transform-origin:center center; background:#fff; box-shadow:0 20px 40px rgba(0,0,0,0.2); overflow:hidden; }
+.monitor-prop .desk-bg { width:100%; height:100%; background: url('assets/desk-background.png') no-repeat center/cover; position:relative; }
+
+/* Keep folder-nav and content slightly popped out */
+.folder-nav, .content-area { transform: translateZ(2px); }
+.print-btn { position:absolute; top:20px; right:20px; z-index:5; }
+
+/* Physical Printer prop styling */
+.printer-prop { position:absolute; bottom:10%; right:12%; width:120px; height:100px; transform: rotateY(10deg) rotateX(-5deg); transform-origin:center center; }
+.printer-prop img { width:100%; height:auto; }
+
+/* Simulated print overlay (paper sheet) */
+.print-overlay { position:absolute; bottom:15%; right:14%; width:300px; height:420px; background:#fff; box-shadow:0 8px 20px rgba(0,0,0,0.3); transform: translateY(100%); transition: transform 0.6s ease-out; z-index:10; }
+.print-overlay.visible { transform: translateY(0); }
+.print-overlay .close-print { position:absolute; top:8px; right:8px; background:transparent; border:none; font-size:20px; cursor:pointer; }
+.print-overlay .print-sheet { padding:20px; height:100%; overflow:auto; }
+
+/* Screen-mode dimming when printing */
+@media screen { .printing .scene *:not(.print-overlay) { filter: blur(2px) brightness(0.8); } }
+
+/* (Existing folder, nav, and panel CSS goes below) */
