@@ -1,4 +1,28 @@
-/* Global resets */n* {n  margin: 0;n  padding: 0;n  box-sizing: border-box;n}nbody, html {n  width: 100%;n  height: 100%;n  font-family: 'Open Sans', sans-serif;n  color: #333;n}n/* Desk background */n.desk-bg {n  background: url('desk-background.jpg') no-repeat center center/cover;n  position: relative;n  min-height: 100vh;n  padding-top: 100px; /* space for tabs */n}n/* Folder navigation */n.folder-nav {n  position: absolute;n  top: 0;n  left: 50%;n  transform: translateX(-50%);
+/* Global resets */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: 'Open Sans', sans-serif;
+  color: #333;
+}
+/* Desk background */
+.desk-bg {
+  background: url('desk-background.jpg') no-repeat center center/cover;
+  position: relative;
+  min-height: 100vh;
+  padding-top: 100px; /* space for tabs */
+}
+/* Folder navigation */
+.folder-nav {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   background: transparent;
   padding: 0 20px;
