@@ -10,8 +10,12 @@
 </head>
 <body>
   <div class="scene">
+    <!-- Monitor Frame -->
     <div class="monitor-prop">
+      <img src="assets/monitor.png" class="monitor-frame" alt="Monitor Frame" />
       <div class="screen">
+
+        <!-- Desktop Icons -->
         <div class="icon-row">
           <img src="assets/this-pc.png"     class="icon" data-target="about-app"        title="About" />
           <img src="assets/recycle-bin.png" class="icon" data-target="recycle-app"      title="Recycle Bin" />
@@ -19,10 +23,20 @@
           <img src="assets/paint.png"       class="icon" data-target="paint-app"        title="Paint" />
           <img src="assets/minesweeper.png" class="icon" data-target="minesweeper-app" title="Minesweeper" />
           <img src="assets/my-pictures.png" class="icon" data-target="pictures-app"     title="My Pictures" />
-          <img src="assets/my-documents.png" class="icon" data-target="documents-app"    title="My Documents" />
+          <img src="assets/my-documents.png"class="icon" data-target="documents-app"    title="Contact" />
         </div>
 
-        <!-- About App -->
+        <!-- Sitemap Web Outline -->
+        <div id="sitemap" class="sitemap">
+          <svg class="sitemap-lines"></svg>
+          <div class="sitemap-node" data-section="about-app"        style="left:20%; top:20%;">About Me</div>
+          <div class="sitemap-node" data-section="paint-app"        style="left:50%; top:20%;">Digital Design</div>
+          <div class="sitemap-node" data-section="pictures-app"     style="left:80%; top:20%;">Photography</div>
+          <div class="sitemap-node" data-section="case-studies-app" style="left:30%; top:50%;">Case Studies</div>
+          <div class="sitemap-node" data-section="documents-app"    style="left:70%; top:50%;">Contact</div>
+        </div>
+
+        <!-- App Windows -->
         <div id="about-app" class="app-window hidden">
           <button class="app-close">×</button>
           <div class="app-content">
@@ -30,8 +44,6 @@
             <p>Rochelle Berry is a creative strategist and digital storyteller...</p>
           </div>
         </div>
-
-        <!-- Recycle Bin App -->
         <div id="recycle-app" class="app-window hidden">
           <button class="app-close">×</button>
           <div class="app-content">
@@ -39,8 +51,6 @@
             <p>Your recycle bin is empty.</p>
           </div>
         </div>
-
-        <!-- Solitaire App -->
         <div id="solitaire-app" class="app-window hidden">
           <button class="app-close">×</button>
           <div class="app-content">
@@ -51,8 +61,6 @@
             <div id="card-display" class="card-display"></div>
           </div>
         </div>
-
-        <!-- Paint App -->
         <div id="paint-app" class="app-window hidden">
           <button class="app-close">×</button>
           <div class="app-content">
@@ -60,8 +68,6 @@
             <canvas id="paint-canvas"></canvas>
           </div>
         </div>
-
-        <!-- Minesweeper App -->
         <div id="minesweeper-app" class="app-window hidden">
           <button class="app-close">×</button>
           <div class="app-content">
@@ -70,8 +76,6 @@
             <div id="ms-grid" class="ms-grid"></div>
           </div>
         </div>
-
-        <!-- My Pictures App -->
         <div id="pictures-app" class="app-window hidden">
           <button class="app-close">×</button>
           <div class="app-content">
@@ -79,20 +83,20 @@
             <p>Gallery coming soon...</p>
           </div>
         </div>
-
-        <!-- My Documents App -->
         <div id="documents-app" class="app-window hidden">
           <button class="app-close">×</button>
           <div class="app-content">
-            <h2>My Documents</h2>
-            <p>Documents list coming soon...</p>
+            <h2>Contact</h2>
+            <p>Email: hello@rochelleberry.com</p>
+            <p>LinkedIn: /in/rochelleberry</p>
+            <p>Phone: (555) 123-4567</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Printer Prop & Overlay (unchanged) -->
-    <img src="assets/printer.png" alt="Printer" class="printer-prop" />
+    <!-- Printer Prop & Overlay -->
+    <img src="assets/printer.png" id="printer-btn" class="printer-prop" alt="Printer" />
     <div class="print-overlay">
       <button class="close-print">×</button>
       <div class="print-sheet"></div>

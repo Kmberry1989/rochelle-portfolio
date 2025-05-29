@@ -1,165 +1,132 @@
-/* Interactive Portfolio Specific Styles */
+/* Interactive Portfolio Updated Styles */
 
-/* Screen container inside monitor */
+/* Monitor Frame */
+.monitor-prop {
+  position: absolute;
+  top: 5%; left: 5%;
+  width: 90%; height: 85%;
+  pointer-events: none;
+}
+.monitor-frame {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Screen */
 .screen {
   position: absolute;
-  top: 5%;
-  left: 5%;
-  width: 90%;
-  height: 85%;
+  top: 10%; left: 7%;
+  width: 86%; height: 76%;
   background: #fff;
   box-shadow: inset 0 0 0 2px #ccc;
+  border-radius: 6px;
   overflow: hidden;
-  border-radius: 8px;
+  z-index: 2;
 }
 
-/* Icon row navigation */
+/* Desktop Icons */
 .icon-row {
   position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 12px;
-  z-index: 5;
+  top: 20px; left: 20px;
+  display: flex; gap: 12px;
+  z-index: 4;
 }
-.icon-row .icon {
-  width: 64px;
-  height: 64px;
+.icon {
+  width: 64px; height: 64px;
   cursor: pointer;
   transition: transform 0.2s;
+  user-select: none;
 }
-.icon-row .icon:hover {
-  transform: scale(1.1);
+.icon:hover { transform: scale(1.1); }
+.icon:active {
+  transform: translateZ(20px) rotateX(15deg) scale(1.2);
+  transition: transform 0.15s ease-out;
 }
 
-/* App Window Styling */
+/* Sitemap Nodes */
+.sitemap {
+  position: absolute;
+  top: 10%; left: 7%;
+  width: 86%; height: 76%;
+  pointer-events: none;
+  z-index: 4;
+}
+.sitemap-lines {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+.sitemap-lines line {
+  stroke: #008080;
+  stroke-width: 2;
+  stroke-dasharray: 10;
+  stroke-dashoffset: 10;
+  animation: drawLine 0.5s forwards;
+}
+@keyframes drawLine {
+  to { stroke-dashoffset: 0; }
+}
+.sitemap-node {
+  position: absolute;
+  padding: 8px 12px;
+  background: #fff;
+  border: 2px solid #008080;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s;
+}
+.sitemap-node:hover { transform: scale(1.05); }
+
+/* App Windows (fade) */
 .app-window {
   position: absolute;
-  top: 10%;
-  left: 10%;
-  width: 80%;
-  height: 80%;
+  top: 10%; left: 10%;
+  width: 80%; height: 80%;
   background: #fff;
   border: 2px solid #008080;
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
   z-index: 10;
-  padding: 16px;
-  border-radius: 4px;
+  padding: 16px; border-radius: 4px;
+  opacity: 0; transition: opacity 0.3s ease;
 }
+.app-window:not(.hidden) { opacity: 1; }
 .app-close {
+  position: absolute; top: 8px; right: 8px;
+  background: transparent; border: none; font-size: 20px; cursor: pointer;
+}
+.app-content { margin-top: 32px; height: calc(100% - 32px); overflow: auto; }
+
+/* Whiteboard Panel */
+.whiteboard {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  background: transparent;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-}
-.app-content {
-  margin-top: 32px;
-  height: calc(100% - 32px);
-  overflow: auto;
-}
-
-/* Solitaire card controls */
-#sol-new,
-#draw-card {
-  padding: 8px 12px;
-  background: #00A99D;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-right: 8px;
-}
-.card-display .card,
-.card-waste .card {
-  display: inline-block;
-  font-size: 48px;
-  font-family: 'Montserrat', sans-serif;
-  margin: 4px;
-}
-
-/* Minesweeper grid */
-.ms-grid {
-  display: grid;
-  grid-template-columns: repeat(8, 40px);
-  grid-template-rows: repeat(8, 40px);
-  gap: 2px;
-  margin-top: 10px;
-}
-.ms-cell {
-  width: 40px;
-  height: 40px;
-  background: #ddd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  cursor: pointer;
-  user-select: none;
-}
-.ms-cell.revealed {
+  top: 10%; left: 7%;
+  width: 86%; height: 76%;
   background: #fff;
-  cursor: default;
+  border: 2px dashed #008080;
+  border-radius: 4px;
+  z-index: 5;
+  display: none;
+}
+.whiteboard.visible { display: block; }
+
+/* Outline Canvas */
+#outline-canvas {
+  width: 100%; height: 100%; cursor: default;
 }
 
-/* Corkboard & Whiteboard panels */
-.corkboard,
-.whiteboard {
-  position: absolute;
-  top: 10%;
-  left: 10%;
-  width: 80%;
-  height: 70%;
-  border: 4px dashed #ccc;
-  overflow: auto;
-  z-index: 2;
-}
-.corkboard {
-  background: url('assets/corkboard.png') no-repeat center/cover;
-}
-.whiteboard {
-  background: url('assets/whiteboard.png') no-repeat center/cover;
-}
+/* Printer Animation */
+@keyframes feedPaper { 0% { transform: translateY(0); } 50% { transform: translateY(20px); } 100% { transform: translateY(0); } }
+.printer-prop.printing { animation: feedPaper 1s ease-out; }
 
-/* Sticky notes */
-.sticky-note {
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  background: #FFEB3B;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  cursor: move;
-  padding: 12px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
-  text-align: center;
-  line-height: 1.4;
-}
-.sticky-note[data-section="about-app"]        { background: #FFC107; }
-.sticky-note[data-section="photography-app"]  { background: #FFCDD2; }
-.sticky-note[data-section="digital-app"]      { background: #C8E6C9; }
-.sticky-note[data-section="events-app"]       { background: #E1BEE7; }
-.sticky-note[data-section="case-studies-app"] { background: #B3E5FC; }
-
-/* Pushpin styling */
-.pushpin {
-  position: absolute;
-  top: -16px;
-  left: calc(50% - 16px);
-  width: 32px;
-  height: 32px;
-  pointer-events: none;
-}
-
-/* Panel visibility helper */
-.hidden { display: none !important; }
-
-/* Whiteboard sketch canvas */
-#sketch-canvas {
-  width: 100%;
-  height: 100%;
-  cursor: crosshair;
+.print-sheet-fly {
+  position: absolute; top: 300px; left: 100px;
+  width: 200px; background: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3); z-index: 20;
 }
