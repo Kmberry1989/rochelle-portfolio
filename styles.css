@@ -1,0 +1,144 @@
+/* Global resets */n* {n  margin: 0;n  padding: 0;n  box-sizing: border-box;n}nbody, html {n  width: 100%;n  height: 100%;n  font-family: 'Open Sans', sans-serif;n  color: #333;n}n/* Desk background */n.desk-bg {n  background: url('desk-background.jpg') no-repeat center center/cover;n  position: relative;n  min-height: 100vh;n  padding-top: 100px; /* space for tabs */n}n/* Folder navigation */n.folder-nav {n  position: absolute;n  top: 0;n  left: 50%;n  transform: translateX(-50%);
+  display: flex;
+  background: transparent;
+  padding: 0 20px;
+}
+.folder-nav ul {
+  display: flex;
+  list-style: none;
+}
+.folder-nav .tab {
+  position: relative;
+  margin-right: 10px;
+}
+.folder-nav .tab button {
+  background: #F0E0B6; /* manila folder color */
+  border: 1px solid #008080;
+  padding: 8px 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.folder-nav .tab.active button,
+.folder-nav .tab button:hover {
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+/* Dropdown submenu */
+.folder-nav .dropdown .submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #F0E0B6;
+  border: 1px solid #008080;
+  list-style: none;
+  padding: 5px 0;
+  z-index: 10;
+}
+.folder-nav .dropdown:hover .submenu {
+  display: block;
+}
+.folder-nav .submenu li button {
+  background: transparent;
+  border: none;
+  padding: 5px 15px;
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+.folder-nav .submenu li button:hover {
+  background: #fff;
+}
+/* Content area */
+.content-area {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.folder-page .folder-panel {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 30px;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.1);
+  border-top: 20px solid #F0E0B6; /* tab edge */
+}
+/* Typography */
+.tagline {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  color: #008080;
+  margin-bottom: 15px;
+}
+.intro-text {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+/* Buttons */
+.btn {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  padding: 10px 18px;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background 0.2s;
+}
+.view-work {
+  background: #00A99D;
+  color: #fff;
+}
+.view-work:hover {
+  background: #008F86;
+}
+.get-in-touch {
+  background: #40E0D0;
+  color: #fff;
+}
+.get-in-touch:hover {
+  background: #38C3B9;
+}
+/* Printer widget */
+.printer-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+}
+.printer-widget img {
+  width: 40px;
+  margin-right: 8px;
+}
+.print-btn {
+  background: #008080;
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.print-btn:hover {
+  transform: scale(1.05);
+}
+/* Responsive drawer for mobile */
+@media (max-width: 768px) {
+  .folder-nav ul {
+    display: none;
+  }
+  .folder-nav::before {
+    content: '\f0c9'; /* FontAwesome bars icon */
+    font-family: 'FontAwesome';
+    font-size: 24px;
+    color: #008080;
+    cursor: pointer;
+  }
+}

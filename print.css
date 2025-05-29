@@ -1,0 +1,43 @@
+/* Print-specific stylesheet */
+@media print {
+  /* Ensure white background and black text for clarity */
+  * {
+    background: white !important;
+    color: #000 !important;
+  }
+
+  /* Hide navigation and printer widget */
+  .folder-nav,
+  .printer-widget,
+  .home-buttons,
+  .btn,
+  .play-video,
+  .view-gallery {
+    display: none !important;
+  }
+
+  /* Simplify folder panels for print */
+  .folder-panel {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Full-width content area */
+  .content-area {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Page breaks between sections */
+  .folder-page {
+    page-break-before: always;
+  }
+
+  /* Images scale to page width */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
