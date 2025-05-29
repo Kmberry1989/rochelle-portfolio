@@ -10,32 +10,89 @@
 </head>
 <body>
   <div class="scene">
-    <!-- Background: Desk or Corkboard -->
-    <img src="assets/front-view-desk.png" alt="Desk Background" class="desk-bg" />
+    <div class="monitor-prop">
+      <div class="screen">
+        <div class="icon-row">
+          <img src="assets/this-pc.png"     class="icon" data-target="about-app"        title="About" />
+          <img src="assets/recycle-bin.png" class="icon" data-target="recycle-app"      title="Recycle Bin" />
+          <img src="assets/solitaire.png"   class="icon" data-target="solitaire-app"    title="Solitaire" />
+          <img src="assets/paint.png"       class="icon" data-target="paint-app"        title="Paint" />
+          <img src="assets/minesweeper.png" class="icon" data-target="minesweeper-app" title="Minesweeper" />
+          <img src="assets/my-pictures.png" class="icon" data-target="pictures-app"     title="My Pictures" />
+          <img src="assets/my-documents.png" class="icon" data-target="documents-app"    title="My Documents" />
+        </div>
 
-    <!-- Icon Row: Entry Points -->
-    <div class="icon-row">
-      <img src="assets/this-pc.png"    class="icon" data-target="about"        title="About" />
-      <img src="assets/recycle-bin.png"class="icon" data-target="reset"        title="Reset" />
-      <img src="assets/solitaire.png"  class="icon" data-target="photography"  title="Photography" />
-      <img src="assets/paint.png"      class="icon" data-target="digital"      title="Design & Marketing" />
-      <img src="assets/minesweeper.png"class="icon" data-target="events"       title="Events & Visuals" />
-      <img src="assets/my-pictures.png" class="icon" data-target="photo-gallery"title="Photo Gallery" />
-      <img src="assets/my-documents.png"class="icon" data-target="case-studies" title="Case Studies" />
+        <!-- About App -->
+        <div id="about-app" class="app-window hidden">
+          <button class="app-close">×</button>
+          <div class="app-content">
+            <h2>About Me</h2>
+            <p>Rochelle Berry is a creative strategist and digital storyteller...</p>
+          </div>
+        </div>
+
+        <!-- Recycle Bin App -->
+        <div id="recycle-app" class="app-window hidden">
+          <button class="app-close">×</button>
+          <div class="app-content">
+            <h2>Recycle Bin</h2>
+            <p>Your recycle bin is empty.</p>
+          </div>
+        </div>
+
+        <!-- Solitaire App -->
+        <div id="solitaire-app" class="app-window hidden">
+          <button class="app-close">×</button>
+          <div class="app-content">
+            <h2>Solitaire</h2>
+            <button id="sol-new">New Game</button>
+            <button id="draw-card">Draw Card</button>
+            <div id="card-waste" class="card-waste"></div>
+            <div id="card-display" class="card-display"></div>
+          </div>
+        </div>
+
+        <!-- Paint App -->
+        <div id="paint-app" class="app-window hidden">
+          <button class="app-close">×</button>
+          <div class="app-content">
+            <h2>Paint</h2>
+            <canvas id="paint-canvas"></canvas>
+          </div>
+        </div>
+
+        <!-- Minesweeper App -->
+        <div id="minesweeper-app" class="app-window hidden">
+          <button class="app-close">×</button>
+          <div class="app-content">
+            <h2>Minesweeper</h2>
+            <button id="ms-new">New Game</button>
+            <div id="ms-grid" class="ms-grid"></div>
+          </div>
+        </div>
+
+        <!-- My Pictures App -->
+        <div id="pictures-app" class="app-window hidden">
+          <button class="app-close">×</button>
+          <div class="app-content">
+            <h2>My Pictures</h2>
+            <p>Gallery coming soon...</p>
+          </div>
+        </div>
+
+        <!-- My Documents App -->
+        <div id="documents-app" class="app-window hidden">
+          <button class="app-close">×</button>
+          <div class="app-content">
+            <h2>My Documents</h2>
+            <p>Documents list coming soon...</p>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Corkboard / Pin Area -->
-    <div id="corkboard" class="corkboard hidden"></div>
-
-    <!-- Whiteboard / Sketch Area -->
-    <div id="whiteboard" class="whiteboard hidden">
-      <canvas id="sketch-canvas"></canvas>
-    </div>
-
-    <!-- Printer Prop -->
+    <!-- Printer Prop & Overlay (unchanged) -->
     <img src="assets/printer.png" alt="Printer" class="printer-prop" />
-
-    <!-- Print Overlay -->
     <div class="print-overlay">
       <button class="close-print">×</button>
       <div class="print-sheet"></div>
