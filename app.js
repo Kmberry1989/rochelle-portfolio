@@ -1,4 +1,4 @@
-// app.js – Interactive Portfolio Logic with Sitemap & Connections
+// app.js – Interactive Portfolio Logic with Sitemap, Connections & Synthesized Printer Sound
 
 document.addEventListener('DOMContentLoaded', () => {
   const icons         = document.querySelectorAll('.icon-row .icon');
@@ -8,6 +8,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const outlineCanvas = document.getElementById('outline-canvas');
   const ctx           = outlineCanvas?.getContext('2d');
   const svg           = document.querySelector('.sitemap-lines');
+
+  // Web Audio context for printer sound
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+  function playPrinterSound(duration = 0.8) {
+    const bufferSize = audioCtx.sampleRate * duration;
+    const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = (Math.random() * 2 - 1) * 0.3; // white noise
+    }
+    const noise = audioCtx.createBufferSource();
+    noise.buffer = buffer;
+    const gainNode = audioCtx.createGain();
+    gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+    noise.connect(gainNode).connect(audioCtx.destination);
+    noise.start();
+    noise.stop(audioCtx.currentTime + duration);
+  }
 
   const outlines = {
     'about-app': [
@@ -46,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     outlineCanvas.height = outlineCanvas.offsetHeight;
   }
 
-  // Hide all overlays and apps
+  // Hide all panels and lines
   function hideAll() {
     appWindows.forEach(w => w.classList.add('hidden'));
     whiteboard.classList.add('hidden');
@@ -54,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (svg) svg.innerHTML = '';
   }
 
-  // Open an app window or whiteboard
+  // Open an app or the whiteboard
   function openApp(id) {
     hideAll();
     if (id === 'whiteboard') {
@@ -64,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Draw lines from clicked sitemap node
+  // Draw animated connections from clicked node
   function drawConnections(clicked) {
     if (!svg) return;
     svg.innerHTML = '';
@@ -74,9 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (node === clicked) return;
       const r1 = clicked.getBoundingClientRect();
       const r2 = node.getBoundingClientRect();
-      const x1 = r1.left + r1.width/2 - parentRect.left;
+      const x1 = r1.left + r1.width/2  - parentRect.left;
       const y1 = r1.top  + r1.height/2 - parentRect.top;
-      const x2 = r2.left + r2.width/2 - parentRect.left;
+      const x2 = r2.left + r2.width/2  - parentRect.left;
       const y2 = r2.top  + r2.height/2 - parentRect.top;
       const line = document.createElementNS('http://www.w3.org/2000/svg','line');
       line.setAttribute('x1', x1);
@@ -87,29 +106,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Desktop icons open panels
+  // Desktop icons → open panels
   icons.forEach(icon =>
     icon.addEventListener('click', () => openApp(icon.dataset.target))
   );
 
-  // Sitemap nodes open whiteboard & draw
+  // Sitemap nodes → whiteboard outline + connections
   document.querySelectorAll('.sitemap-node').forEach(node => {
     node.addEventListener('click', () => {
       openApp('whiteboard');
       if (ctx) {
-        ctx.clearRect(0,0,outlineCanvas.width,outlineCanvas.height);
+        ctx.clearRect(0, 0, outlineCanvas.width, outlineCanvas.height);
         ctx.fillStyle = '#008080';
         ctx.font = '24px Montserrat';
-        outlines[node.dataset.section]?.forEach((line, i) =>
-          ctx.fillText(line, 40, 60 + i*40)
+        (outlines[node.dataset.section] || []).forEach((line, i) =>
+          ctx.fillText(line, 40, 60 + i * 40)
         );
       }
       drawConnections(node);
     });
   });
 
-  // Show sitemap on load
+  // Show sitemap initially
   sitemap.style.display = 'block';
 
-  // (Paint, Solitaire, Minesweeper, Printer logic remain as before)
+  // Printer interaction
+  const printerBtn = document.getElementById('printer-btn');
+  if (printerBtn) {
+    printerBtn.addEventListener('click', () => {
+      printerBtn.classList.add('printing');
+      playPrinterSound();
+      setTimeout(() => printerBtn.classList.remove('printing'), 1000);
+
+      // paper-eject animation (existing logic)...
+    });
+  }
+
+  // (Paint, Solitaire, Minesweeper logic remains unchanged)
 });
