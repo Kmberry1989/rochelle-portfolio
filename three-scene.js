@@ -1,61 +1,69 @@
-// three-scene.js – Home Office 3D Environment
+/* Interactive.css – Revised for Static Office Background */
 
-// Renderer & Scene
-const renderer = new THREE.WebGLRenderer({
-  canvas: document.getElementById('three-canvas'),
-  alpha: true,
-  antialias: true
-});
-renderer.setSize(window.innerWidth, window.innerHeight);
+/* Global Hidden Helper */
+.hidden { display: none !important; }
 
-const scene  = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(
-  50, window.innerWidth/window.innerHeight, 0.1, 1000
-);
-camera.position.set(0, 3, 5);
-
-// Lights
-scene.add(new THREE.AmbientLight(0xffffff, 0.6));
-const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
-dirLight.position.set(3, 10, 5);
-scene.add(dirLight);
-
-// Floor
-const floor = new THREE.Mesh(
-  new THREE.PlaneGeometry(10,10),
-  new THREE.MeshLambertMaterial({ color: 0xe0e0e0 })
-);
-floor.rotation.x = -Math.PI/2;
-scene.add(floor);
-
-// Desk (wood box)
-const deskTexture = new THREE.TextureLoader().load('assets/desk-background.png');
-const desk = new THREE.Mesh(
-  new THREE.BoxGeometry(4,0.2,2),
-  new THREE.MeshLambertMaterial({ map: deskTexture })
-);
-desk.position.set(0,0.1,0);
-scene.add(desk);
-
-// Monitor (paper screen)
-const screenTexture = new THREE.TextureLoader().load('assets/monitor-screen.png');
-const monitor = new THREE.Mesh(
-  new THREE.BoxGeometry(1.6,1,0.05),
-  new THREE.MeshLambertMaterial({ map: screenTexture })
-);
-monitor.position.set(0,0.75,-0.5);
-scene.add(monitor);
-
-// Animate loop
-function animate() {
-  requestAnimationFrame(animate);
-  renderer.render(scene, camera);
+/* Office Background */
+.office-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
 }
-animate();
 
-// Resize handler
-window.addEventListener('resize', () => {
-  camera.aspect = window.innerWidth/window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-});
+/* Monitor Frame */
+.monitor-prop {
+  position: absolute;
+  top: 5%; left: 5%;
+  width: 90%; height: 85%;
+  pointer-events: none;
+}
+.monitor-frame {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Screen */
+.screen {
+  position: absolute;
+  top: 10%; left: 7%;
+  width: 86%; height: 76%;
+  background: #fff;
+  box-shadow: inset 0 0 0 2px #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 2;
+}
+
+/* Desktop Icons */
+.icon-row {
+  position: absolute;
+  top: 20px; left: 20px;
+  display: flex; gap: 12px;
+  z-index: 4;
+}
+.icon {
+  width: 64px; height: 64px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  user-select: none;
+}
+.icon:hover { transform: scale(1.1); }
+.icon:active {
+  transform: translateZ(20px) rotateX(15deg) scale(1.2);
+  transition: transform 0.15s ease-out;
+}
+
+/* Sitemap & SVG lines */
+/* (unchanged from previous) */
+
+/* App Windows & Whiteboard */
+/* (unchanged) */
+
+/* Printer props & animations */
+/* (unchanged) */
