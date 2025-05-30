@@ -1,15 +1,14 @@
 // app.js – Interactive Portfolio Logic with Sitemap & Connections
 
 document.addEventListener('DOMContentLoaded', () => {
-  const icons        = document.querySelectorAll('.icon-row .icon');
-  const appWindows   = document.querySelectorAll('.app-window');
-  const sitemap      = document.getElementById('sitemap');
-  const whiteboard   = document.getElementById('whiteboard');
-  const outlineCanvas= document.getElementById('outline-canvas');
-  const ctx          = outlineCanvas?.getContext('2d');
-  const svg          = document.querySelector('.sitemap-lines');
+  const icons         = document.querySelectorAll('.icon-row .icon');
+  const appWindows    = document.querySelectorAll('.app-window');
+  const sitemap       = document.getElementById('sitemap');
+  const whiteboard    = document.getElementById('whiteboard');
+  const outlineCanvas = document.getElementById('outline-canvas');
+  const ctx           = outlineCanvas?.getContext('2d');
+  const svg           = document.querySelector('.sitemap-lines');
 
-  // Outlines for whiteboard
   const outlines = {
     'about-app': [
       'About Me',
@@ -35,9 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ],
     'documents-app': [
       'Contact',
-      '- Email: rochelleberry731@gmail.com',
-      '- LinkedIn: https://www.linkedin.com/in/rochelleberry731?trk=contact-info',
-      '- Phone: (574) 601-5652'
+      '- Email: rochelle.berry@example.com',
+      '- LinkedIn: linkedin.com/in/rochelleberry',
+      '- Phone: (123) 456-7890'
     ]
   };
 
@@ -65,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Draw connections from clicked sitemap node
+  // Draw lines from clicked sitemap node
   function drawConnections(clicked) {
     if (!svg) return;
     svg.innerHTML = '';
@@ -88,29 +87,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Icon click: open corresponding panel
-  icons.forEach(icon => {
-    icon.addEventListener('click', () => openApp(icon.dataset.target));
-  });
+  // Desktop icons open panels
+  icons.forEach(icon =>
+    icon.addEventListener('click', () => openApp(icon.dataset.target))
+  );
 
-  // Sitemap node click: show whiteboard, render outline, draw lines
+  // Sitemap nodes open whiteboard & draw
   document.querySelectorAll('.sitemap-node').forEach(node => {
     node.addEventListener('click', () => {
       openApp('whiteboard');
-      // render text
       if (ctx) {
         ctx.clearRect(0,0,outlineCanvas.width,outlineCanvas.height);
         ctx.fillStyle = '#008080';
         ctx.font = '24px Montserrat';
-        const lines = outlines[node.dataset.section] || [];
-        lines.forEach((line, i) => ctx.fillText(line, 40, 60 + i*40));
+        outlines[node.dataset.section]?.forEach((line, i) =>
+          ctx.fillText(line, 40, 60 + i*40)
+        );
       }
       drawConnections(node);
     });
   });
 
-  // Show sitemap initially
+  // Show sitemap on load
   sitemap.style.display = 'block';
 
-  // (Existing Paint, Solitaire, Minesweeper and Printer logic goes here…)
+  // (Paint, Solitaire, Minesweeper, Printer logic remain as before)
 });

@@ -9,6 +9,9 @@
   <link rel="stylesheet" href="interactive.css" />
 </head>
 <body>
+  <!-- Three.js Canvas Background -->
+  <canvas id="three-canvas"></canvas>
+
   <div class="scene">
     <!-- Monitor Frame -->
     <div class="monitor-prop">
@@ -44,6 +47,7 @@
             <p>Rochelle Berry is a creative strategist and digital storyteller...</p>
           </div>
         </div>
+
         <div id="recycle-app" class="app-window hidden">
           <button class="app-close">×</button>
           <div class="app-content">
@@ -51,6 +55,7 @@
             <p>Your recycle bin is empty.</p>
           </div>
         </div>
+
         <div id="solitaire-app" class="app-window hidden">
           <button class="app-close">×</button>
           <div class="app-content">
@@ -61,6 +66,7 @@
             <div id="card-display" class="card-display"></div>
           </div>
         </div>
+
         <div id="paint-app" class="app-window hidden">
           <button class="app-close">×</button>
           <div class="app-content">
@@ -68,6 +74,7 @@
             <canvas id="paint-canvas"></canvas>
           </div>
         </div>
+
         <div id="minesweeper-app" class="app-window hidden">
           <button class="app-close">×</button>
           <div class="app-content">
@@ -76,6 +83,7 @@
             <div id="ms-grid" class="ms-grid"></div>
           </div>
         </div>
+
         <div id="pictures-app" class="app-window hidden">
           <button class="app-close">×</button>
           <div class="app-content">
@@ -83,15 +91,17 @@
             <p>Gallery coming soon...</p>
           </div>
         </div>
+
         <div id="documents-app" class="app-window hidden">
           <button class="app-close">×</button>
           <div class="app-content">
             <h2>Contact</h2>
-            <p>Email: hello@rochelleberry.com</p>
-            <p>LinkedIn: /in/rochelleberry</p>
-            <p>Phone: (555) 123-4567</p>
+            <p>Email: rochelle.berry@example.com</p>
+            <p>LinkedIn: linkedin.com/in/rochelleberry</p>
+            <p>Phone: (123) 456-7890</p>
           </div>
         </div>
+
       </div>
     </div>
 
@@ -101,8 +111,11 @@
       <button class="close-print">×</button>
       <div class="print-sheet"></div>
     </div>
+
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="three-scene.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
